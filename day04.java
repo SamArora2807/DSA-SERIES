@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class day04 {
+    //q2 https://www.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1
     public int findMinDiff(ArrayList<Integer> arr, int m) {
         Collections.sort(arr);
         int mindiff=Integer.MAX_VALUE;
