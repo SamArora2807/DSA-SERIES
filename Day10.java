@@ -23,26 +23,22 @@ public class Day10 {
         return arr;
     }
     // Q2:https://leetcode.com/problems/next-permutation/description/
-    void swap(int a,int b)
-    {
-        int temp=a;
-        a=b;
-        b=temp;
-    }
     void reverse(int arr[],int s,int e)
     {
         while(s<=e)
         {
-           swap(arr[s],arr[e]);
-           s++;
-           e--;
+            int temp=arr[s];
+            arr[s]=arr[e];
+            arr[e]=temp;
+            s++;
+            e--;
         }
     }
     public void nextPermutation(int[] nums) {
         int n = nums.length;
         int index = -1;
         for (int i = n - 2; i >= 0; i--) {
-            if (nums[i] > nums[i + 1]) {
+            if (nums[i] < nums[i + 1]) {
                 index = i;
                 break;
             }
@@ -52,20 +48,18 @@ public class Day10 {
             reverse(nums,0,n-1);
             return;
         }
-        int x=index+1;
-        for(x=index+1;x<n;x++)
+
+        for(int x=n-1;x>index;x--)
         {
-            if(nums[x]<nums[index])
+            if(nums[x]>nums[index])
             {
-                swap(nums[x-1],nums[index]);
+                int temp=nums[x];
+                nums[x]=nums[index];
+                nums[index]=temp;
                 break;
 
             }
-            if(x==n-1&&nums[x]>nums[index])
-            {
-                swap(nums[x],nums[index]);
-            }
-            reverse(nums,index+1,n-1);
         }
+        reverse(nums,index+1,n-1);
     }
 }
